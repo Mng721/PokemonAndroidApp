@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">My Pokemondex</string>
+
+    <string name="pokedex_data_title">Pokédex data</string>
+    <string name="pokemon_build_title">Pokémon build</string>
+
+    <string name="pokedex_stats_title">Base stats</string>
+    <string name="pokemon_no">National №</string>
+    <string name="pokemon_type">Type</string>
+    <string name="pokemon_species">Species</string>
+    <string name="pokemon_height">Height</string>
+    <string name="pokemon_weight">Weight</string>
+    <string name="pokemon_abilities">Abilities</string>
+
+    <!--    Stats-->
+    <string name="pokemon_hp_text">HP</string>
+    <string name="pokemon_atk_text">Attack</string>
+    <string name="pokemon_def_text">Defence</string>
+    <string name="pokemon_spa_text">Sp. Atk</string>
+    <string name="pokemon_spd_text">Sp. Def</string>
+    <string name="pokemon_spe_text">Speed</string>
+    <string name="pokemon_total_text">Total</string>
+    <string name="pokemon_total_min_text">Min</string>
+    <string name="pokemon_total_max_text">Max</string>
+
+    <string name="pokemon_image">Pokemon image</string>
+
+    <string name="emptyemail">Email must input.</string>
+    <string name="emptypassword">Password must input.</string>
+    <string name="emailformat">Email must be name@domainname.</string>
+
+</resources>

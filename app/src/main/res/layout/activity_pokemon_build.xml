@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    tools:context=".view.PokemonBuildActivity">
+
+    <TextView
+        android:id="@+id/tv_pokemon_build_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/pokemon_build_title"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/iv_pokemon_build_detail"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="24dp"
+        android:contentDescription="@string/pokemon_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pokemon_build_title"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="184dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="77dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="9"
+        android:hint="Nickname"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <EditText
+        android:id="@+id/et_pokemon_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="9"
+        android:hint="Level (Default: 50)"
+        android:inputType="numberSigned"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+    <RadioGroup
+        android:id="@+id/rg_is_shiny"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/et_pokemon_level">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shiny: "
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rb_shiny_yes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rb_shiny_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="No"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="237dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="202dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Item"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Ability"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <LinearLayout
+        android:id="@+id/stat_linear_layout"
+        android:layout_width="409dp"
+        android:layout_height="402dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom">
+
+                <TextView
+                    android:id="@+id/tv_pokemon_hp_build_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:paddingVertical="4dp"
+                    android:text="@string/pokemon_hp_text"
+                    android:textColor="@color/pokemon_attr_text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_hp_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/pb_pokemon_hp_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:max="400"
+                    android:progress="45"
+                    app:indicatorColor="@color/black"
+                    app:trackColor="@color/white"
+                    app:trackCornerRadius="4dp"
+                    app:trackThickness="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_hp_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="IV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_hp_iv_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="31"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dark_border_bottom">
+
+                <SeekBar
+                    android:id="@+id/sb_pokemon_hp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="7"
+                    android:max="255"
+                    android:progress="0" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_hp_ev"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="EV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_hp_ev_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom">
+
+                <TextView
+                    android:id="@+id/tv_pokemon_atk_build_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:paddingVertical="4dp"
+                    android:text="@string/pokemon_atk_text"
+                    android:textColor="@color/pokemon_attr_text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_atk_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/pb_pokemon_atk_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:max="400"
+                    android:progress="45"
+                    app:indicatorColor="@color/black"
+                    app:trackColor="@color/white"
+                    app:trackCornerRadius="4dp"
+                    app:trackThickness="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_atk_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="IV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_atk_iv_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="31"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dark_border_bottom">
+
+                <SeekBar
+                    android:id="@+id/sb_pokemon_atk"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="7"
+                    android:max="255"
+                    android:progress="0" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_atk_ev"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="EV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_atk_ev_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom">
+
+                <TextView
+                    android:id="@+id/tv_pokemon_def_build_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:paddingVertical="4dp"
+                    android:text="@string/pokemon_def_text"
+                    android:textColor="@color/pokemon_attr_text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_def_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/pb_pokemon_def_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:max="400"
+                    android:progress="45"
+                    app:indicatorColor="@color/black"
+                    app:trackColor="@color/white"
+                    app:trackCornerRadius="4dp"
+                    app:trackThickness="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_def_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="IV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_def_iv_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="31"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dark_border_bottom">
+
+                <SeekBar
+                    android:id="@+id/sb_pokemon_def"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="7"
+                    android:max="255"
+                    android:progress="0" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_def_ev"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="EV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_def_ev_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom">
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spa_build_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:paddingVertical="4dp"
+                    android:text="@string/pokemon_spa_text"
+                    android:textColor="@color/pokemon_attr_text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spa_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/pb_pokemon_spa_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:max="400"
+                    android:progress="45"
+                    app:indicatorColor="@color/black"
+                    app:trackColor="@color/white"
+                    app:trackCornerRadius="4dp"
+                    app:trackThickness="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spa_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="IV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_spa_iv_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="31"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dark_border_bottom">
+
+                <SeekBar
+                    android:id="@+id/sb_pokemon_spa"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="7"
+                    android:max="255"
+                    android:progress="0" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spa_ev"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="EV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_spa_ev_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom">
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spd_build_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:paddingVertical="4dp"
+                    android:text="@string/pokemon_spd_text"
+                    android:textColor="@color/pokemon_attr_text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spd_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/pb_pokemon_spd_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:max="400"
+                    android:progress="45"
+                    app:indicatorColor="@color/black"
+                    app:trackColor="@color/white"
+                    app:trackCornerRadius="4dp"
+                    app:trackThickness="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spd_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="IV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_spd_iv_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="31"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dark_border_bottom">
+
+                <SeekBar
+                    android:id="@+id/sb_pokemon_spd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="7"
+                    android:max="255"
+                    android:progress="0" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spd_ev"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="EV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_spd_ev_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom">
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spe_build_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:paddingVertical="4dp"
+                    android:text="@string/pokemon_spe_text"
+                    android:textColor="@color/pokemon_attr_text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spe_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/pb_pokemon_spe_build_stat"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:max="400"
+                    android:progress="45"
+                    app:indicatorColor="@color/black"
+                    app:trackColor="@color/white"
+                    app:trackCornerRadius="4dp"
+                    app:trackThickness="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spe_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="IV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_spe_iv_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="31"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dark_border_bottom">
+
+                <SeekBar
+                    android:id="@+id/sb_pokemon_spe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="7"
+                    android:max="255"
+                    android:progress="0" />
+
+                <TextView
+                    android:id="@+id/tv_pokemon_spe_ev"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="4dp"
+                    android:text="EV"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_pokemon_spe_ev_stat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_horizontal"
+                    android:inputType="numberSigned"
+                    android:paddingVertical="4dp"
+                    android:text="0"
+                    android:textColor="@color/stat_text_color"
+                    android:textSize="18sp" />
+            </TableRow>
+
+
+        </TableLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="337dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nature"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stat_linear_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
