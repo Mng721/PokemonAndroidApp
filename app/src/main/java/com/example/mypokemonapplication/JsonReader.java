@@ -21,11 +21,7 @@ public class JsonReader {
             data = new byte[inputStream.available()];
             inputStream.read(data);
             inputStream.close();
-
             jsonString = new String(data, "UTF-8");
-
-            Toast.makeText(context.getApplicationContext(), jsonString,Toast.LENGTH_LONG).show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -19,14 +19,12 @@ import com.example.mypokemonapplication.R;
 import com.example.mypokemonapplication.adapter.PokemonTypeAdapter;
 import com.example.mypokemonapplication.clients.RetrofitClient;
 import com.example.mypokemonapplication.interfaces.RetrofitService;
-import com.example.mypokemonapplication.model.pokemon.pokemondetail.Pokemon;
 import com.example.mypokemonapplication.model.pokemon.typedetail.Type;
 import com.example.mypokemonapplication.model.utility.common_models.NamedAPIResource;
 import com.google.gson.Gson;
 
 import java.util.List;
 
-import io.paperdb.Paper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -92,14 +90,6 @@ public class TypeDetailActivity extends AppCompatActivity {
             typeName = bundle.getString("type_detail_name");
         }
 
-//    Paper
-        Paper.init(this);
-        if (Paper.book().read(typeName) != null){
-            String results = Paper.book().read(typeName);
-            Type type = new Gson().fromJson(results, Type.class);
-            setupProsCons(type);
-        }
-
 
 //        Retrofit
         retrofitService = RetrofitClient.getClient().create(RetrofitService.class);
@@ -109,7 +99,6 @@ public class TypeDetailActivity extends AppCompatActivity {
             public void onResponse(Call<Type> call, Response<Type> response) {
                 Type type = response.body();
                 setupProsCons(type);
-                Paper.book().write(typeName, new Gson().toJson(type));
             }
 
             @Override

@@ -4,6 +4,7 @@ package com.example.mypokemonapplication.viewmodels;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.View;
 
@@ -24,6 +25,7 @@ public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<Integer> LoginStatus = new MutableLiveData<>();
     private LoginUser loginUser = new LoginUser();
+
     public void onclickLogin() {
         try {
             if (validateData()) {

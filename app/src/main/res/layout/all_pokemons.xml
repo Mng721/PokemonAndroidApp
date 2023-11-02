@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
+
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -19,6 +21,12 @@
             app:title=""
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:menu="@menu/menu_main">
+
+            <ImageView
+                android:id="@+id/iv_hamburger_toolbar"
+                android:layout_width="@dimen/ic_toolbar_size"
+                android:layout_height="@dimen/ic_toolbar_size"
+                android:src="@drawable/ic_baseline_dehaze_24"/>
 
             <ImageView
                 android:layout_gravity="center"

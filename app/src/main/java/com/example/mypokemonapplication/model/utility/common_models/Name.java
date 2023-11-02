@@ -1,5 +1,7 @@
 package com.example.mypokemonapplication.model.utility.common_models;
 
+import com.example.mypokemonapplication.model.utility.languages.Language;
+
 public class Name {
     private String name;
     private NamedAPIResource languages;

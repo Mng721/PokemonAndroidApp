@@ -166,7 +166,6 @@ public class PokemonDetailActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<Pokemon> call, @NonNull Response<Pokemon> response) {
                 Pokemon pokemon = response.body();
                 setUpPokemonDetail(pokemon);
-                Paper.book().write(pokemonName, new Gson().toJson(pokemon));
             }
 
             @Override

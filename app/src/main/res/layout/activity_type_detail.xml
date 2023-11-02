@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Type"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/top_app_margin"
         android:fontFamily="sans-serif"
         android:textSize="40sp"
         android:textStyle="bold"
