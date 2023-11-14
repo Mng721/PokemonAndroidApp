@@ -32,7 +32,7 @@ public class PokemonFromApiAdapter  extends RecyclerView.Adapter<PokemonViewHold
     public PokemonFromApiAdapter(Activity activity, List<NamedAPIResource> results) {
         this.activity = activity;
         this.results = results;
-        this.oldResults = oldResults;
+        this.oldResults = results;
     }
 
     @NonNull
@@ -47,10 +47,10 @@ public class PokemonFromApiAdapter  extends RecyclerView.Adapter<PokemonViewHold
         NamedAPIResource pokemon = results.get(position);
 
         String pokemonName = pokemon.getName();
-        holder.setImgUrlFromPosition(pokemonName.toLowerCase());
+        holder.setImgUrlFromName(pokemonName);
         if (pokemonName != null) {
             holder.pokemonName.setVisibility(View.VISIBLE);
-            holder.pokemonName.setText("No. " + String.valueOf(position + 1) + ": " + capitalize(pokemonName));
+            holder.pokemonName.setText("No. " + String.valueOf(oldResults.indexOf(pokemon) + 1) + ": " + capitalize(pokemonName));
         } else {
             holder.pokemonName.setVisibility(View.GONE);
         }

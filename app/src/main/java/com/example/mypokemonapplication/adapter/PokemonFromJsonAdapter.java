@@ -50,7 +50,7 @@ public class PokemonFromJsonAdapter extends RecyclerView.Adapter<PokemonViewHold
         int pokemonId = allPokemonFromJson.getId();
 
         String pokemonName = allPokemonFromJson.getName();
-        holder.setImgUrlFromPosition(pokemonName.toLowerCase());
+        holder.setImgUrlFromName(pokemonName);
         if (pokemonName != null) {
             holder.pokemonName.setVisibility(View.VISIBLE);
             holder.pokemonName.setText("No. " + String.valueOf(pokemonId) + ": " + capitalize(pokemonName));

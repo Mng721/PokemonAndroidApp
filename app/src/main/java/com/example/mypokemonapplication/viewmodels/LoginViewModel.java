@@ -1,17 +1,15 @@
 package com.example.mypokemonapplication.viewmodels;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.mypokemonapplication.AllPokemonsActivity;
 import com.example.mypokemonapplication.Utils.Status;
 import com.example.mypokemonapplication.Utils.ValidatorUtil;
 import com.example.mypokemonapplication.model.LoginUser;
@@ -23,8 +21,18 @@ public class LoginViewModel extends ViewModel {
         return LoginStatus;
     }
 
-    private MutableLiveData<Integer> LoginStatus = new MutableLiveData<>();
-    private LoginUser loginUser = new LoginUser();
+    private final MutableLiveData<Integer> LoginStatus = new MutableLiveData<>();
+    private final LoginUser loginUser = new LoginUser();
+
+    private Boolean isRemember;
+
+    public Boolean getRemember() {
+        return isRemember;
+    }
+
+    public void setRemember(Boolean remember) {
+        isRemember = remember;
+    }
 
     public void onclickLogin() {
         try {
@@ -65,4 +73,5 @@ public class LoginViewModel extends ViewModel {
     public LoginUser getLoginUser() {
         return loginUser;
     }
+
 }

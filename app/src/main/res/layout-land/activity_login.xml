@@ -63,6 +63,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblTitle" />
 
+            <CheckBox
+                android:id="@+id/cb_rememberme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:text="Remember me"
+                android:layout_marginTop="8dp"
+                android:checked="@{loginViewModel.remember}"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+
             <EditText
                 android:id="@+id/txtPassword"
                 android:layout_width="0dp"
@@ -84,14 +96,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:text="Click to Login"
                 android:backgroundTint="@color/electric_type"
                 android:onClick="@{()-> loginViewModel.onclickLogin()}"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/cb_rememberme" />
 
             <Button
                 android:id="@+id/btnSignUp"

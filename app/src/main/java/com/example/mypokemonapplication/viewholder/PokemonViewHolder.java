@@ -23,13 +23,13 @@ public class PokemonViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    public void setImgUrlFromPosition(String name) {
+    public void setImgUrlFromName(String name) {
         String url = "https://img.pokemondb.net/artwork/large/" + name + ".jpg";
         Picasso.get().load(url).error(R.drawable.download).into(ivPokemon);
     }
 
 
-    public void setImgUrlFromId(String id) {
+    public void setImgUrlFromId(int id) {
         String url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png";
         Picasso.get().load(url).into(ivPokemon);
     }

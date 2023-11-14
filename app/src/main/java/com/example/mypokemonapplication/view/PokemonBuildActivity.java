@@ -207,8 +207,7 @@ public class PokemonBuildActivity extends AppCompatActivity {
 
 //
 
-        retrofitService = RetrofitClient.getClient().create(RetrofitService.class);
-        Call<Pokemon> pokemonCall = retrofitService.pokemonDetail(pokemonUrl);
+        Call<Pokemon> pokemonCall = RetrofitClient.getInstance().getMyApi().pokemonDetail(pokemonUrl);
         pokemonCall.enqueue(new Callback<Pokemon>() {
             @Override
             public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {

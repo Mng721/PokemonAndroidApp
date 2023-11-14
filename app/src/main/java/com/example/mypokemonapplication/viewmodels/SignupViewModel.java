@@ -13,15 +13,15 @@ import com.example.mypokemonapplication.model.LoginUser;
 public class SignupViewModel extends ViewModel {
 
     public MutableLiveData<Integer> getSignupStatus(){return SignupStatus;}
-    private MutableLiveData<Integer> SignupStatus = new MutableLiveData<>();
+    private final MutableLiveData<Integer> SignupStatus = new MutableLiveData<>();
 
-    private MutableLiveData<Boolean> onEndLive = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> onEndLive = new MutableLiveData<>();
 
     public MutableLiveData<Boolean> getOnEndLive(){
         return onEndLive;
     }
 
-    private LoginUser loginUser = new LoginUser();
+    private final LoginUser loginUser = new LoginUser();
 
     public LoginUser getLoginUser(){return loginUser;}
 

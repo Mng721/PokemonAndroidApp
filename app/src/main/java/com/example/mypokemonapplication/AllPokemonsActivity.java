@@ -12,6 +12,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 
 import com.example.mypokemonapplication.adapter.PokemonFromApiAdapter;
@@ -20,8 +21,12 @@ import com.example.mypokemonapplication.clients.RetrofitClient;
 import com.example.mypokemonapplication.interfaces.RetrofitService;
 import com.example.mypokemonapplication.model.AllPokemon;
 import com.example.mypokemonapplication.model.AllPokemonFromJson;
+import com.example.mypokemonapplication.model.pokemon.pokemondetail.Pokemon;
 import com.example.mypokemonapplication.model.utility.common_models.NamedAPIResource;
+import com.google.gson.Gson;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -44,36 +49,37 @@ public class AllPokemonsActivity extends AppCompatActivity {
     private List<AllPokemonFromJson> allPokemonFromJson;
 
     private RetrofitService retrofitService;
-    private boolean isInternetConnection;
+
+    private AllPokemon allPokemon;
 
     private List<NamedAPIResource> listPokemon;
+
+    private Gson gson;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_pokemons);
 
-        isInternetConnection = isInternetConnected();
-
+        gson = new Gson();
 //        Recycler view
         rvPokemonsList = findViewById(R.id.rv_pokemon_list);
 
         rvPokemonsList.setLayoutManager(new GridLayoutManager(AllPokemonsActivity.this, 2));
 
-        if (isInternetConnection) {
-            retrofitService = RetrofitClient.getClient().create(RetrofitService.class);
-            Call<AllPokemon> pokemonCall = retrofitService.allPokemon("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
+        if (isInternetConnected()) {
+            Call<AllPokemon> pokemonCall = RetrofitClient.getInstance().getMyApi().allPokemon("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
             pokemonCall.enqueue(new Callback<AllPokemon>() {
                 @Override
                 public void onResponse(Call<AllPokemon> call, Response<AllPokemon> response) {
                     if (response.body() != null) {
                         listPokemon = response.body().getResults();
+                        pokemonFromApiAdapter = new PokemonFromApiAdapter(AllPokemonsActivity.this, listPokemon);
+                        rvPokemonsList.setAdapter(pokemonFromApiAdapter);
                     }
-
-                    pokemonFromApiAdapter = new PokemonFromApiAdapter(AllPokemonsActivity.this, listPokemon);
-                    rvPokemonsList.setAdapter(pokemonFromApiAdapter);
                 }
-
                 @Override
                 public void onFailure(Call<AllPokemon> call, Throwable t) {
 
@@ -84,7 +90,6 @@ public class AllPokemonsActivity extends AppCompatActivity {
             pokemonFromJsonAdapter = new PokemonFromJsonAdapter(AllPokemonsActivity.this, allPokemonFromJson);
             rvPokemonsList.setAdapter(pokemonFromJsonAdapter);
         }
-
 //
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -104,7 +109,7 @@ public class AllPokemonsActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (isInternetConnection) {
+                if (isInternetConnected()) {
                     pokemonFromApiAdapter.getFilter().filter(query);
                 } else {
                     pokemonFromJsonAdapter.getFilter().filter(query);
@@ -114,7 +119,7 @@ public class AllPokemonsActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (isInternetConnection) {
+                if (isInternetConnected()) {
                     pokemonFromApiAdapter.getFilter().filter(newText);
                 } else {
                     pokemonFromJsonAdapter.getFilter().filter(newText);
@@ -126,9 +131,15 @@ public class AllPokemonsActivity extends AppCompatActivity {
     }
 
     private boolean isInternetConnected(){
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED);
+        boolean connected = false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo nInfo = cm.getActiveNetworkInfo();
+            connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
+            return connected;
+        } catch (Exception e) {
+            Log.e("Connectivity Exception", e.getMessage());
+        }
+        return false;
     }
 }

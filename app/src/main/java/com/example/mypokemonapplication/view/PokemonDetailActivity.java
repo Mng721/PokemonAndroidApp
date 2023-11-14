@@ -159,8 +159,7 @@ public class PokemonDetailActivity extends AppCompatActivity {
         }
 
 //        Retrofit
-        retrofitService = RetrofitClient.getClient().create(RetrofitService.class);
-        Call<Pokemon> pokemonCall = retrofitService.pokemonDetail(urlPokemon);
+        Call<Pokemon> pokemonCall = RetrofitClient.getInstance().getMyApi().pokemonDetail(urlPokemon);
         pokemonCall.enqueue(new Callback<Pokemon>() {
             @Override
             public void onResponse(@NonNull Call<Pokemon> call, @NonNull Response<Pokemon> response) {
@@ -182,7 +181,7 @@ public class PokemonDetailActivity extends AppCompatActivity {
             String pokemonName = pokemon.getName();
             tvPokemonName.setText(capitalize(pokemonName));
 //          pokemon img
-            Picasso.get().load(pokemon.getSprites().getFrontDefault()).into(ivPokemon);
+            Picasso.get().load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon.getId()+".png").error(R.drawable.download).into(ivPokemon);
 //          pokemon nation number
             tvPokemonNumber.setText(pokemon.getNumber(pokemon.getId()));
 //          pokemon type

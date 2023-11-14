@@ -3,7 +3,9 @@ package com.example.mypokemonapplication;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.mypokemonapplication.model.AllPokemon;
 import com.example.mypokemonapplication.model.AllPokemonFromJson;
+import com.example.mypokemonapplication.model.utility.common_models.NamedAPIResource;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -28,4 +30,5 @@ public class JsonReader {
 
         return new Gson().fromJson(jsonString, new TypeToken<ArrayList<AllPokemonFromJson>>(){}.getType());
     }
+
 }

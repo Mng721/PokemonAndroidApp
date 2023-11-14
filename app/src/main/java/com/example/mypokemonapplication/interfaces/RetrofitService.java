@@ -21,6 +21,7 @@ import retrofit2.http.Url;
 public interface RetrofitService {
 //    https://pokeapi.co/api/v2/
 
+    String BASE_URL = "https://pokeapi.co/api/v2/";
     @GET
     Call<AllPokemon> allPokemon(@Url String url);
     @GET

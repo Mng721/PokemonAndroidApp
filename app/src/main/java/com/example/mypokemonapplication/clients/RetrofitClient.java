@@ -1,16 +1,30 @@
 package com.example.mypokemonapplication.clients;
 
+import com.example.mypokemonapplication.interfaces.RetrofitService;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static final String baseUrl = "https://pokeapi.co/api/v2/";
-    private static Retrofit retrofit = null;
 
-    public static Retrofit getClient() {
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build();
-        }
-        return retrofit;
+    private RetrofitService myApi;
+
+    private static RetrofitClient instance = null;
+
+    public RetrofitClient() {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(RetrofitService.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        myApi = retrofit.create(RetrofitService.class);
     }
+
+    public static synchronized RetrofitClient getInstance(){
+        if (instance == null) {
+            instance = new RetrofitClient();
+        }
+        return instance;
+    }
+
+    public RetrofitService getMyApi(){ return myApi; }
 }

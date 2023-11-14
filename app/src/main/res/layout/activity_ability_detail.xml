@@ -19,7 +19,7 @@
             android:textStyle="bold"
             android:textSize="40dp"
             android:textColor="@color/black"
-            android:text="This is new layout"
+            android:text="@{abilityDetailViewModel.ability.name}"
             android:layout_marginTop="@dimen/top_app_margin"
             android:fontFamily="sans-serif"
             ></TextView>

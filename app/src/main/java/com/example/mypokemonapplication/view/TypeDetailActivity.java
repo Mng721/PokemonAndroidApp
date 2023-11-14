@@ -92,8 +92,7 @@ public class TypeDetailActivity extends AppCompatActivity {
 
 
 //        Retrofit
-        retrofitService = RetrofitClient.getClient().create(RetrofitService.class);
-        Call<Type> typeCall = retrofitService.typeDetail(urlType);
+        Call<Type> typeCall = RetrofitClient.getInstance().getMyApi().typeDetail(urlType);
         typeCall.enqueue(new Callback<Type>() {
             @Override
             public void onResponse(Call<Type> call, Response<Type> response) {
