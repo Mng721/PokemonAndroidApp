@@ -1,21 +1,33 @@
 package com.example.mypokemonapplication.model;
 
-import com.example.mypokemonapplication.model.pokemon.pokemondetail.Pokemon;
+import androidx.annotation.NonNull;
+import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LoginUser {
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private Long uid;
     private String name;
     private String username;
     private String password;
     private List<String> favPokemon;
 
-    public LoginUser(String name, String username, String password) {
+    public LoginUser(Long uid, String name, String username, String password, List<String> favPokemon) {
+        this.uid = uid;
         this.name = name;
         this.username = username;
         this.password = password;
-        this.favPokemon = new ArrayList<String>();
+        this.favPokemon = favPokemon;
+    }
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
     }
 
     public LoginUser() {

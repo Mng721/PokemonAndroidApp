@@ -52,8 +52,12 @@ public class PokemonDetailActivity extends AppCompatActivity {
     private String urlPokemon;
     private String pokemonName;
 
+//    Boolean
+    private Boolean isLiked = false;
+
     //    ImageView
     private ImageView ivPokemon;
+    private ImageView ivLiked;
 
     //    TextView
     private TextView tvPokemonName;
@@ -157,6 +161,11 @@ public class PokemonDetailActivity extends AppCompatActivity {
             urlPokemon = bundle.getString("pokemon_detail_url");
             pokemonName = bundle.getString("pokemon_name");
         }
+        callDataFromApi();
+        onClickLikePokemon();
+    }
+
+    private void callDataFromApi(){
 
 //        Retrofit
         Call<Pokemon> pokemonCall = RetrofitClient.getInstance().getMyApi().pokemonDetail(urlPokemon);
@@ -271,6 +280,22 @@ public class PokemonDetailActivity extends AppCompatActivity {
                 llPokemonAbilities.addView(view);
             }
         }
+    }
+
+    private void onClickLikePokemon(){
+        ivLiked = findViewById(R.id.iv_pokemon_fav);
+        ivLiked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isLiked){
+                    ivLiked.setImageResource(R.mipmap.ic_heart_border_foreground);
+                    isLiked = false;
+                } else {
+                    ivLiked.setImageResource(R.mipmap.ic_heart_red_foreground);
+                    isLiked = true;
+                }
+            }
+        });
     }
 
     private void setPokemonDetailStats(Pokemon pokemon) {

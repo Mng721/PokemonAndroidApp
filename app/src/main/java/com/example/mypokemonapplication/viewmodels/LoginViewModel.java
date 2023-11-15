@@ -70,6 +70,7 @@ public class LoginViewModel extends ViewModel {
         return true;
     }
 
+
     public LoginUser getLoginUser() {
         return loginUser;
     }

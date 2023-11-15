@@ -3,7 +3,6 @@ package com.example.mypokemonapplication.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -16,6 +15,7 @@ import com.example.mypokemonapplication.R;
 import com.example.mypokemonapplication.Utils.Status;
 import com.example.mypokemonapplication.databinding.ActivityLoginBinding;
 import com.example.mypokemonapplication.viewmodels.LoginViewModel;
+import com.google.android.gms.common.SignInButton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,7 +71,15 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.setRemember(false);
         }
     }
+//
+//    private void initLoginButton(){
+//        SignInButton googleLoginButton = findViewById(R.id.btn_login_with_google);
+//        googleLoginButton.setOnClickListener(v -> signIn());
+//    }
 
+    private void signIn(){
+
+    }
     private void loginStatus() {
         loginViewModel.getLoginStatus().observe(this, status -> {
             switch (status) {

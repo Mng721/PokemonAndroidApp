@@ -10,9 +10,9 @@ public class RetrofitClient {
 
     private RetrofitService myApi;
 
-    private static RetrofitClient instance = null;
+    private static RetrofitClient instance;
 
-    public RetrofitClient() {
+    private RetrofitClient() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(RetrofitService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

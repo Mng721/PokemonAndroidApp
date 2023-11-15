@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.mypokemonapplication.Utils.Status;
 import com.example.mypokemonapplication.Utils.ValidatorUtil;
 import com.example.mypokemonapplication.model.LoginUser;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupViewModel extends ViewModel {
 
