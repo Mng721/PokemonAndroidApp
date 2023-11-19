@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,14 +29,25 @@ import com.example.mypokemonapplication.model.pokemon.pokemondetail.Pokemon;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.PokemonAbility;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.PokemonStat;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.PokemonType;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,24 +108,18 @@ public class PokemonDetailActivity extends AppCompatActivity {
     //    Linear layout
     private LinearLayout llPokemonAbilities;
 
-    //Firebase
-    private FirebaseAuth auth;
-    private FirebaseUser user;
-
     //    RecyclerView
     private RecyclerView rvPokemonTypeList;
 
     //    Button
     private Button btnBuild;
 
+    private DatabaseReference db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon_detail);
-
-//        Auth
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
 
 //        ImageView
         ivPokemon = findViewById(R.id.iv_pokemon_default_detail);
@@ -159,6 +166,13 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
 //        Linear layout
         llPokemonAbilities = findViewById(R.id.ll_pokemon_abilities);
+
+//        Firebase
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String id = user.getUid();
+        db = FirebaseDatabase
+                .getInstance("https://my-pokemon-application-default-rtdb.asia-southeast1.firebasedatabase.app")
+                .getReference().child("users").child(user.getUid());
 
         Bundle bundle = getIntent().getExtras();
         if (bundle.getString("pokemon_detail_url") != null) {
@@ -285,14 +299,33 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
     private void onClickLikePokemon() {
         ivLiked = findViewById(R.id.iv_pokemon_fav);
+        DatabaseReference favPokemonRef = db.child("favPokemon").child(pokemonName);
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    ivLiked.setImageResource(R.mipmap.ic_heart_red_foreground);
+                    isLiked = true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        favPokemonRef.addListenerForSingleValueEvent(valueEventListener);
         ivLiked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isLiked) {
                     ivLiked.setImageResource(R.mipmap.ic_heart_border_foreground);
+                    db.child("favPokemon").child(pokemonName).removeValue();
                     isLiked = false;
                 } else {
                     ivLiked.setImageResource(R.mipmap.ic_heart_red_foreground);
+                    db.child("favPokemon").child(pokemonName).setValue(true);
                     isLiked = true;
                 }
             }
