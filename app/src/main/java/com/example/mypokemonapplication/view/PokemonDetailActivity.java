@@ -40,6 +40,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Tag;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.text.WordUtils;
@@ -300,14 +301,11 @@ public class PokemonDetailActivity extends AppCompatActivity {
     private void onClickLikePokemon() {
         ivLiked = findViewById(R.id.iv_pokemon_fav);
         DatabaseReference favPokemonRef = db.child("favPokemon").child(pokemonName);
-
-        ValueEventListener valueEventListener = new ValueEventListener() {
+        ValueEventListener valueEventListener =  new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    ivLiked.setImageResource(R.mipmap.ic_heart_red_foreground);
-                    isLiked = true;
-                }
+                isLiked = snapshot.exists();
+                System.out.println(isLiked);
             }
 
             @Override
@@ -316,6 +314,7 @@ public class PokemonDetailActivity extends AppCompatActivity {
             }
         };
         favPokemonRef.addListenerForSingleValueEvent(valueEventListener);
+        Toast.makeText(this, String.valueOf(isLiked), Toast.LENGTH_SHORT).show();
         ivLiked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

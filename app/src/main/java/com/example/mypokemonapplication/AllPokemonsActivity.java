@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +16,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.mypokemonapplication.adapter.PokemonFromApiAdapter;
 import com.example.mypokemonapplication.adapter.PokemonFromJsonAdapter;
@@ -42,8 +46,7 @@ public class AllPokemonsActivity extends AppCompatActivity {
     private PokemonFromJsonAdapter pokemonFromJsonAdapter;
     private PokemonFromApiAdapter pokemonFromApiAdapter;
 
-    //    SearchView
-    private SearchView searchView;
+    //    ImageView
 
 //
     private List<AllPokemonFromJson> allPokemonFromJson;
@@ -54,8 +57,12 @@ public class AllPokemonsActivity extends AppCompatActivity {
 
     private List<NamedAPIResource> listPokemon;
 
+
     private Gson gson;
 
+    private DrawerLayout drawerLayout;
+
+    private ImageView ivOpenDrawer;
 
 
     @Override
@@ -63,46 +70,20 @@ public class AllPokemonsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_pokemons);
 
-        gson = new Gson();
-//        Recycler view
-        rvPokemonsList = findViewById(R.id.rv_pokemon_list);
-
-        rvPokemonsList.setLayoutManager(new GridLayoutManager(AllPokemonsActivity.this, 2));
-
-        if (isInternetConnected()) {
-            Call<AllPokemon> pokemonCall = RetrofitClient.getInstance().getMyApi().allPokemon("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
-            pokemonCall.enqueue(new Callback<AllPokemon>() {
-                @Override
-                public void onResponse(Call<AllPokemon> call, Response<AllPokemon> response) {
-                    if (response.body() != null) {
-                        listPokemon = response.body().getResults();
-                        pokemonFromApiAdapter = new PokemonFromApiAdapter(AllPokemonsActivity.this, listPokemon);
-                        rvPokemonsList.setAdapter(pokemonFromApiAdapter);
-                    }
-                }
-                @Override
-                public void onFailure(Call<AllPokemon> call, Throwable t) {
-
-                }
-            });
-        } else {
-            allPokemonFromJson = com.example.mypokemonapplication.JsonReader.convertJsonToObject(AllPokemonsActivity.this);
-            pokemonFromJsonAdapter = new PokemonFromJsonAdapter(AllPokemonsActivity.this, allPokemonFromJson);
-            rvPokemonsList.setAdapter(pokemonFromJsonAdapter);
-        }
-//
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getDataFromApi();
+        setUpToolbar();
+        openDrawer();
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        //    SearchView
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
@@ -130,6 +111,50 @@ public class AllPokemonsActivity extends AppCompatActivity {
         return true;
     }
 
+    private void setUpToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+    private void openDrawer(){
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        ivOpenDrawer = (ImageView) findViewById(R.id.iv_hamburger_toolbar);
+        ivOpenDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+    }
+    private void getDataFromApi(){
+        gson = new Gson();
+//        Recycler view
+        rvPokemonsList = findViewById(R.id.rv_pokemon_list);
+
+        rvPokemonsList.setLayoutManager(new GridLayoutManager(AllPokemonsActivity.this, 2));
+
+        if (isInternetConnected()) {
+            Call<AllPokemon> pokemonCall = RetrofitClient.getInstance().getMyApi().allPokemon("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
+            pokemonCall.enqueue(new Callback<AllPokemon>() {
+                @Override
+                public void onResponse(Call<AllPokemon> call, Response<AllPokemon> response) {
+                    if (response.body() != null) {
+                        listPokemon = response.body().getResults();
+                        pokemonFromApiAdapter = new PokemonFromApiAdapter(AllPokemonsActivity.this, listPokemon);
+                        rvPokemonsList.setAdapter(pokemonFromApiAdapter);
+                    }
+                }
+                @Override
+                public void onFailure(Call<AllPokemon> call, Throwable t) {
+
+                }
+            });
+        } else {
+            allPokemonFromJson = com.example.mypokemonapplication.JsonReader.convertJsonToObject(AllPokemonsActivity.this);
+            pokemonFromJsonAdapter = new PokemonFromJsonAdapter(AllPokemonsActivity.this, allPokemonFromJson);
+            rvPokemonsList.setAdapter(pokemonFromJsonAdapter);
+        }}
     private boolean isInternetConnected(){
         boolean connected = false;
         try {
