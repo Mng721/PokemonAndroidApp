@@ -31,5 +31,8 @@
     <string name="emptyname">Name must input.</string>
     <string name="weakpassword">Password must be at least 8 characters.</string>
     <string name="emailExisted">This email already used.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account_setting">Account setting</string>
 
 </resources>

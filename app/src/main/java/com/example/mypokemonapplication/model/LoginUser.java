@@ -4,26 +4,31 @@ import androidx.annotation.NonNull;
 import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class LoginUser {
     private String name;
     private String username;
     private String password;
-    private List<String> favPokemon;
 
-    public LoginUser(String name, String username, String password, List<String> favPokemon) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.favPokemon = favPokemon;
-    }
+    private String dateOfBirth;
+    private String gender;
+    private HashMap<String, Boolean> favPokemon;
 
     public LoginUser(String name, String username) {
         this.name = name;
         this.username = username;
-        this.favPokemon = new ArrayList<String>();
+        this.favPokemon = new HashMap<>();
         this.password = null;
+    }
+
+    public LoginUser(String name, String username, String dateOfBirth, String gender) {
+        this.name = name;
+        this.username = username;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
     }
 
     public LoginUser() {
@@ -37,11 +42,27 @@ public class LoginUser {
         this.name = name;
     }
 
-    public List<String> getFavPokemon() {
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public HashMap<String, Boolean> getFavPokemon() {
         return favPokemon;
     }
 
-    public void setFavPokemon(List<String> favPokemon) {
+    public void setFavPokemon(HashMap<String, Boolean> favPokemon) {
         this.favPokemon = favPokemon;
     }
 

@@ -54,8 +54,37 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/navigation_menu" />
+        app:menu="@menu/navigation_menu"
+        android:background="@color/pokemon_theme_color"
+        app:headerLayout="@layout/nav_header">
+        <LinearLayout
+            android:id="@+id/btn_quit_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:padding="16dp"
+            android:background="@color/white">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/ic_baseline_catching_pokemon"
+                android:layout_gravity="start|center_vertical"/>
+            <TextView
+                android:id="@+id/nav_view_quit_app"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pokédex"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp"
+                android:textSize="24dp"
+                android:textColor="@color/pokemon_attr_text"
+                />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
