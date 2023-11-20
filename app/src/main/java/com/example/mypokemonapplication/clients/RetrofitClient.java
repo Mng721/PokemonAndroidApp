@@ -1,6 +1,6 @@
 package com.example.mypokemonapplication.clients;
 
-import com.example.mypokemonapplication.interfaces.RetrofitService;
+import com.example.mypokemonapplication.api.RetrofitService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -1,10 +1,19 @@
 package com.example.mypokemonapplication.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
+import com.example.mypokemonapplication.converters.PokemonsFavConverter;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity(tableName = "users")
+@TypeConverters({PokemonsFavConverter.class})
 public class LoginUser {
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -12,14 +21,14 @@ public class LoginUser {
     private String name;
     private String username;
     private String password;
-    private List<String> favPokemon;
 
-    public LoginUser(Long uid, String name, String username, String password, List<String> favPokemon) {
+    public ArrayList<String> pokemonsFav;
+
+    public LoginUser(Long uid, String name, String username, String password) {
         this.uid = uid;
         this.name = name;
         this.username = username;
         this.password = password;
-        this.favPokemon = favPokemon;
     }
 
     public Long getUid() {
@@ -39,14 +48,6 @@ public class LoginUser {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<String> getFavPokemon() {
-        return favPokemon;
-    }
-
-    public void setFavPokemon(List<String> favPokemon) {
-        this.favPokemon = favPokemon;
     }
 
     public String getUsername() {

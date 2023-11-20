@@ -3,7 +3,6 @@ package com.example.mypokemonapplication.view;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -15,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mypokemonapplication.R;
 import com.example.mypokemonapplication.clients.RetrofitClient;
-import com.example.mypokemonapplication.interfaces.RetrofitService;
+import com.example.mypokemonapplication.api.RetrofitService;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.Pokemon;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.PokemonStat;
 import com.google.android.material.progressindicator.LinearProgressIndicator;

@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login success.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this, AllPokemonsActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
                 case Status.emptyEmail:
                     //thong bao Toast message hoac hien thi loi Email trong

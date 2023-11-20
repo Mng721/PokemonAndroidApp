@@ -23,20 +23,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mypokemonapplication.R;
 import com.example.mypokemonapplication.adapter.PokemonTypeAdapter;
 import com.example.mypokemonapplication.clients.RetrofitClient;
-import com.example.mypokemonapplication.interfaces.RetrofitService;
+import com.example.mypokemonapplication.api.RetrofitService;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.Pokemon;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.PokemonAbility;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.PokemonStat;
 import com.example.mypokemonapplication.model.pokemon.pokemondetail.PokemonType;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.List;
 
-import io.paperdb.Paper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

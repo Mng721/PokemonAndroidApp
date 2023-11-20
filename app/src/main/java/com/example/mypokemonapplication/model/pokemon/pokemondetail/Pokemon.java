@@ -5,7 +5,6 @@ import com.example.mypokemonapplication.model.utility.common_models.VersionGameI
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
 public class Pokemon {
     private int id;
     private String name;

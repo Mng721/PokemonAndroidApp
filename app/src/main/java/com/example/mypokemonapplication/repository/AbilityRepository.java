@@ -2,8 +2,7 @@ package com.example.mypokemonapplication.repository;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.mypokemonapplication.clients.RetrofitClient;
-import com.example.mypokemonapplication.interfaces.RetrofitService;
+import com.example.mypokemonapplication.api.RetrofitService;
 import com.example.mypokemonapplication.model.pokemon.Ability.Ability;
 
 import retrofit2.Call;

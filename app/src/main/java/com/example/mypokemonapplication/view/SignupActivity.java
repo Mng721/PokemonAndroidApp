@@ -15,6 +15,7 @@ import com.example.mypokemonapplication.R;
 import com.example.mypokemonapplication.Utils.Status;
 import com.example.mypokemonapplication.databinding.ActivitySignupBinding;
 import com.example.mypokemonapplication.viewmodels.SignupViewModel;
+import com.google.firebase.FirebaseApp;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         signupViewModel = new ViewModelProvider(this).get(SignupViewModel.class);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
         binding.setLifecycleOwner(this);

@@ -18,10 +18,9 @@ import android.widget.TextView;
 import com.example.mypokemonapplication.R;
 import com.example.mypokemonapplication.adapter.PokemonTypeAdapter;
 import com.example.mypokemonapplication.clients.RetrofitClient;
-import com.example.mypokemonapplication.interfaces.RetrofitService;
+import com.example.mypokemonapplication.api.RetrofitService;
 import com.example.mypokemonapplication.model.pokemon.typedetail.Type;
 import com.example.mypokemonapplication.model.utility.common_models.NamedAPIResource;
-import com.google.gson.Gson;
 
 import java.util.List;
 

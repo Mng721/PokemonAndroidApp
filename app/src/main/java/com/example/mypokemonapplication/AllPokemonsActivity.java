@@ -18,15 +18,12 @@ import android.view.Menu;
 import com.example.mypokemonapplication.adapter.PokemonFromApiAdapter;
 import com.example.mypokemonapplication.adapter.PokemonFromJsonAdapter;
 import com.example.mypokemonapplication.clients.RetrofitClient;
-import com.example.mypokemonapplication.interfaces.RetrofitService;
+import com.example.mypokemonapplication.api.RetrofitService;
 import com.example.mypokemonapplication.model.AllPokemon;
 import com.example.mypokemonapplication.model.AllPokemonFromJson;
-import com.example.mypokemonapplication.model.pokemon.pokemondetail.Pokemon;
 import com.example.mypokemonapplication.model.utility.common_models.NamedAPIResource;
 import com.google.gson.Gson;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;

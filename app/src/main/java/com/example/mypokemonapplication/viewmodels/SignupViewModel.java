@@ -1,18 +1,43 @@
 package com.example.mypokemonapplication.viewmodels;
 
+import android.app.Application;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.mypokemonapplication.Utils.Status;
 import com.example.mypokemonapplication.Utils.ValidatorUtil;
 import com.example.mypokemonapplication.model.LoginUser;
+import com.example.mypokemonapplication.repository.AuthenticationRepository;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class SignupViewModel extends ViewModel {
+public class SignupViewModel extends AndroidViewModel {
 
+    private AuthenticationRepository repository;
+    private MutableLiveData<FirebaseUser> userData;
+
+    public SignupViewModel(@NonNull Application application) {
+        super(application);
+
+        repository = new AuthenticationRepository(application);
+    }
+
+    public void register(){
+        try {
+            if (validateData()) {
+//               //call api login here
+                SignupStatus.setValue(Status.signupSuccess);
+                repository.register(loginUser.getUsername(), loginUser.getPassword());
+            }
+        } catch (Exception ex) {
+            Log.e("Signup viewmodel",ex.getMessage());
+        }
+    }
     public MutableLiveData<Integer> getSignupStatus(){return SignupStatus;}
     private final MutableLiveData<Integer> SignupStatus = new MutableLiveData<>();
 

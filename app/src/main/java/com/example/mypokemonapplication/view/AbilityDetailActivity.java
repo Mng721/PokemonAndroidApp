@@ -5,14 +5,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.mypokemonapplication.R;
 import com.example.mypokemonapplication.clients.RetrofitClient;
 import com.example.mypokemonapplication.databinding.ActivityAbilityDetailBinding;
-import com.example.mypokemonapplication.interfaces.RetrofitService;
+import com.example.mypokemonapplication.api.RetrofitService;
 import com.example.mypokemonapplication.model.pokemon.Ability.Ability;
-import com.example.mypokemonapplication.model.pokemon.typedetail.Type;
 import com.example.mypokemonapplication.viewmodels.AbilityDetailViewModel;
 
 import retrofit2.Call;
