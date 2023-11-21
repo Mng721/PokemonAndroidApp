@@ -65,7 +65,6 @@ public class SignupViewModel extends ViewModel {
 
     public void writeNewUser(){
         String uid = auth
-                .getInstance()
                 .getCurrentUser()
                 .getUid();
         DatabaseReference db = FirebaseDatabase

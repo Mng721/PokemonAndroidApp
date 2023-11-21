@@ -33,7 +33,6 @@
                 android:id="@+id/iv_pokemon_fav"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@mipmap/ic_heart_border_foreground"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
 

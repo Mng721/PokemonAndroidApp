@@ -21,7 +21,6 @@ public class LoginUser {
         this.name = name;
         this.username = username;
         this.favPokemon = new HashMap<>();
-        this.password = null;
     }
 
     public LoginUser(String name, String username, String dateOfBirth, String gender) {

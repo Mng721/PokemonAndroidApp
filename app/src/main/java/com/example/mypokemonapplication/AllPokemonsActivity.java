@@ -180,10 +180,12 @@ public class AllPokemonsActivity extends AppCompatActivity {
                         FirebaseAuth.getInstance().signOut();
                         finish();
                         Toast.makeText(AllPokemonsActivity.this, "Logout success.", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.nav_account:
                         Intent intent = new Intent(AllPokemonsActivity.this, AccountSettingActivity.class);
                         startActivity(intent);
                         drawerLayout.close();
+                        break;
                 }
                 return true;
             }

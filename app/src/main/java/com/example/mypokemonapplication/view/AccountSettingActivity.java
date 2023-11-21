@@ -87,7 +87,7 @@ public class AccountSettingActivity extends AppCompatActivity {
                     childUpdates.put("gender", selectedRadioButton.getText().toString());
                 }
                 if (etBirthDate.getText() != null){
-                    childUpdates.put("dateOfBirth", etBirthDate.getText());
+                    childUpdates.put("dateOfBirth", etBirthDate.getText().toString());
                 } else {
                     etBirthDate.requestFocus();
                     Toast.makeText(AccountSettingActivity.this, "Date of birth can's be empty.", Toast.LENGTH_SHORT).show();
@@ -106,13 +106,16 @@ public class AccountSettingActivity extends AppCompatActivity {
                 etEmail.setText(user.getUsername());
                 if (user.getGender() != null) {
                     switch (user.getGender()) {
-                        case "male":
-                            rbMale.setChecked(true);
-                            rbFemale.setChecked(false);
-                        case "female":
-                            rbMale.setChecked(false);
-                            rbFemale.setChecked(true);
+                        case "Male":
+                            rgGender.check(R.id.rb_male);
+                            break;
+                        case "Female":
+                            rgGender.check(R.id.rb_female);
+                            break;
                     }
+                }
+                if (user.getDateOfBirth() != null){
+                    etBirthDate.setText(user.getDateOfBirth());
                 }
             }
 
