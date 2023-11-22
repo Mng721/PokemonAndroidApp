@@ -11,4 +11,37 @@ public class AbilityPokemon {
     private int slot;
 
     private NamedAPIResource pokemon;
+
+    public AbilityPokemon(boolean isHidden, int slot, NamedAPIResource pokemon) {
+        this.isHidden = isHidden;
+        this.slot = slot;
+        this.pokemon = pokemon;
+    }
+
+    public AbilityPokemon() {
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
+    }
+
+    public int getSlot() {
+        return slot;
+    }
+
+    public void setSlot(int slot) {
+        this.slot = slot;
+    }
+
+    public NamedAPIResource getPokemon() {
+        return pokemon;
+    }
+
+    public void setPokemon(NamedAPIResource pokemon) {
+        this.pokemon = pokemon;
+    }
 }

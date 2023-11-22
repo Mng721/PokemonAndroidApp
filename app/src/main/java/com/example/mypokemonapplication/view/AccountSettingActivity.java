@@ -90,9 +90,10 @@ public class AccountSettingActivity extends AppCompatActivity {
                     childUpdates.put("dateOfBirth", etBirthDate.getText().toString());
                 } else {
                     etBirthDate.requestFocus();
-                    Toast.makeText(AccountSettingActivity.this, "Date of birth can's be empty.", Toast.LENGTH_SHORT).show();
+                    etBirthDate.setError("Date of birth can't be empty.");
                 }
                 db.child("users").child(currentUserUid).updateChildren(childUpdates);
+                finish();
             }
         });
     }

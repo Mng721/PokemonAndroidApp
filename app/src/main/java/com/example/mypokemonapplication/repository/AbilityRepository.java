@@ -1,5 +1,8 @@
 package com.example.mypokemonapplication.repository;
 
+import android.app.Application;
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mypokemonapplication.clients.RetrofitClient;
@@ -12,23 +15,14 @@ import retrofit2.Response;
 
 public class AbilityRepository {
 
-    private static RetrofitService myInterface = null;
     private final MutableLiveData<Ability> abilityMutableLiveData = new MutableLiveData<>();
 
-    private static AbilityRepository newsAbilityRepository;
-
-    private static AbilityRepository getInstance(){
-        if (newsAbilityRepository == null){
-            newsAbilityRepository = new AbilityRepository();
-        }
-        return newsAbilityRepository;
+    private Application application;
+    public AbilityRepository(Application application){
+        this.application = application;
     }
-
-    public AbilityRepository(){
-    }
-
     public MutableLiveData<Ability> getAbilityMutableLiveData(String url){
-        Call<Ability> abilityCall = myInterface.abilityDetail(url);
+        Call<Ability> abilityCall = RetrofitClient.getInstance().getMyApi().abilityDetail(url);
         abilityCall.enqueue(new Callback<Ability>() {
             @Override
             public void onResponse(Call<Ability> call, Response<Ability> response) {
@@ -38,6 +32,7 @@ public class AbilityRepository {
             @Override
             public void onFailure(Call<Ability> call, Throwable t) {
                 abilityMutableLiveData.postValue(null);
+                Log.d("ListSize"," - > Error    "+ t.getMessage());
             }
         });
         return abilityMutableLiveData;

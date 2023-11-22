@@ -5,15 +5,17 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.text.method.TextKeyListener;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.mypokemonapplication.R;
 import com.example.mypokemonapplication.clients.RetrofitClient;
-import com.example.mypokemonapplication.databinding.ActivityAbilityDetailBinding;
-import com.example.mypokemonapplication.interfaces.RetrofitService;
 import com.example.mypokemonapplication.model.pokemon.Ability.Ability;
 import com.example.mypokemonapplication.model.pokemon.typedetail.Type;
 import com.example.mypokemonapplication.viewmodels.AbilityDetailViewModel;
+
+import org.apache.commons.lang3.text.WordUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,24 +23,21 @@ import retrofit2.Response;
 
 public class AbilityDetailActivity extends AppCompatActivity {
 
-    AbilityDetailViewModel abilityDetailViewModel;
-
-    ActivityAbilityDetailBinding binding;
+    private AbilityDetailViewModel abilityDetailViewModel;
 
     private String urlAbility;
+    private TextView tvAbilityTitle;
 
-    private RetrofitService retrofitService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_ability_detail);
         abilityDetailViewModel = new ViewModelProvider(this).get(AbilityDetailViewModel.class);
-        binding = DataBindingUtil.setContentView(AbilityDetailActivity.this, R.layout.activity_ability_detail);
-        binding.setLifecycleOwner(this);
-        binding.setAbilityDetailViewModel(abilityDetailViewModel);
+        tvAbilityTitle = findViewById(R.id.tv_ability_title);
+
         getUrlBundle();
-        doRequest();
+        getAbility();
     }
     private void getUrlBundle(){
         final Bundle bundle = getIntent().getExtras();
@@ -47,19 +46,9 @@ public class AbilityDetailActivity extends AppCompatActivity {
         }
     }
 
-    public void doRequest(){
-        Call<Ability> abilityCall = RetrofitClient.getInstance().getMyApi().abilityDetail(urlAbility);
-        abilityCall.enqueue(new Callback<Ability>() {
-            @Override
-            public void onResponse(Call<Ability> call, Response<Ability> response) {
-                Ability ability = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<Ability> call, Throwable t) {
-
-            }
+    private void getAbility(){
+        abilityDetailViewModel.getAbility(urlAbility).observe(this, ability -> {
+            tvAbilityTitle.setText(WordUtils.capitalize(ability.getName().replace("-", " ")));
         });
     }
-
 }

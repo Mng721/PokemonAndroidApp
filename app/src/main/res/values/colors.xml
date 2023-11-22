@@ -10,6 +10,7 @@
     <color name="light_grey">#BABABA</color>
     <color name="pokemon_theme_color">#ffcb05</color>
     <color name="pokemon_attr_text">#737373</color>
+    <color name="content_text_color">#101010</color>
 
     <color name="text_shadow">#7F000000</color>
     <color name="stat_text_color">#404040</color>
