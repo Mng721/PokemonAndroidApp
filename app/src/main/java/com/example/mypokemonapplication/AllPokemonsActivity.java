@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +33,7 @@ import com.example.mypokemonapplication.model.AllPokemon;
 import com.example.mypokemonapplication.model.AllPokemonFromJson;
 import com.example.mypokemonapplication.model.utility.common_models.NamedAPIResource;
 import com.example.mypokemonapplication.view.AccountSettingActivity;
+import com.example.mypokemonapplication.viewmodels.AllPokemonViewModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
@@ -53,22 +55,21 @@ public class AllPokemonsActivity extends AppCompatActivity {
     private PokemonFromApiAdapter pokemonFromApiAdapter;
 
     //    ImageView
-
     private RetrofitService retrofitService;
-
-    private AllPokemon allPokemon;
 
     private List<NamedAPIResource> listPokemon;
 
 
     private DrawerLayout drawerLayout;
 
+    private AllPokemonViewModel allPokemonViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_pokemons);
 
+        allPokemonViewModel = new ViewModelProvider(this).get(AllPokemonViewModel.class);
         getDataFromApi();
         setUpToolbar();
         openDrawer();
@@ -128,27 +129,16 @@ public class AllPokemonsActivity extends AppCompatActivity {
         });
     }
     private void getDataFromApi(){
-        Gson gson = new Gson();
 //        Recycler view
         rvPokemonsList = findViewById(R.id.rv_pokemon_list);
 
         rvPokemonsList.setLayoutManager(new GridLayoutManager(AllPokemonsActivity.this, 2));
 
         if (isInternetConnected()) {
-            Call<AllPokemon> pokemonCall = RetrofitClient.getInstance().getMyApi().allPokemon("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
-            pokemonCall.enqueue(new Callback<AllPokemon>() {
-                @Override
-                public void onResponse(Call<AllPokemon> call, Response<AllPokemon> response) {
-                    if (response.body() != null) {
-                        listPokemon = response.body().getResults();
-                        pokemonFromApiAdapter = new PokemonFromApiAdapter(AllPokemonsActivity.this, listPokemon);
-                        rvPokemonsList.setAdapter(pokemonFromApiAdapter);
-                    }
-                }
-                @Override
-                public void onFailure(Call<AllPokemon> call, Throwable t) {
-
-                }
+            allPokemonViewModel.getAllPokemons().observe(this, allPokemon -> {
+                listPokemon = allPokemon.getResults();
+                pokemonFromApiAdapter = new PokemonFromApiAdapter(AllPokemonsActivity.this, listPokemon);
+                rvPokemonsList.setAdapter(pokemonFromApiAdapter);
             });
         } else {
             //
