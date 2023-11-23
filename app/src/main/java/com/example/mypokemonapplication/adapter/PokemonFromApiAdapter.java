@@ -47,18 +47,20 @@ public class PokemonFromApiAdapter  extends RecyclerView.Adapter<PokemonViewHold
         NamedAPIResource pokemon = results.get(position);
 
         String pokemonName = pokemon.getName();
-        holder.setImgUrlFromName(pokemonName);
+
         if (pokemonName != null) {
+            holder.setImgUrlFromName(pokemonName);
             holder.pokemonName.setVisibility(View.VISIBLE);
             holder.pokemonName.setText("No. " + String.valueOf(oldResults.indexOf(pokemon) + 1) + ": " + capitalize(pokemonName));
         } else {
             holder.pokemonName.setVisibility(View.GONE);
+            holder.ivPokemon.setVisibility(View.GONE);
         }
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(activity, PokemonDetailActivity.class);
-            intent.putExtra("pokemon_detail_url", "https://pokeapi.co/api/v2/pokemon/" + pokemon.getName() + "/");
-            intent.putExtra("pokemon_name", pokemon.getName());
+            intent.putExtra("pokemon_detail_url", "https://pokeapi.co/api/v2/pokemon/" + pokemonName + "/");
+            intent.putExtra("pokemon_name", pokemonName);
             activity.startActivity(intent);
 
 //                Animation change layout

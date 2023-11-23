@@ -170,7 +170,6 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
 //        Firebase
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String id = user.getUid();
         db = FirebaseDatabase
                 .getInstance("https://my-pokemon-application-default-rtdb.asia-southeast1.firebasedatabase.app")
                 .getReference().child("users").child(user.getUid());

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".view.FavoritePokemonActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.AccountSettingActivity"
             android:exported="false" />
         <activity

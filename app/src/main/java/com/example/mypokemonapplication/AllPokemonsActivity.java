@@ -33,6 +33,7 @@ import com.example.mypokemonapplication.model.AllPokemon;
 import com.example.mypokemonapplication.model.AllPokemonFromJson;
 import com.example.mypokemonapplication.model.utility.common_models.NamedAPIResource;
 import com.example.mypokemonapplication.view.AccountSettingActivity;
+import com.example.mypokemonapplication.view.FavoritePokemonActivity;
 import com.example.mypokemonapplication.viewmodels.AllPokemonViewModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -170,6 +171,11 @@ public class AllPokemonsActivity extends AppCompatActivity {
                         FirebaseAuth.getInstance().signOut();
                         finish();
                         Toast.makeText(AllPokemonsActivity.this, "Logout success.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.nav_favorite:
+                        Intent intentFavPokemons = new Intent(AllPokemonsActivity.this, FavoritePokemonActivity.class);
+                        startActivity(intentFavPokemons);
+                        drawerLayout.close();
                         break;
                     case R.id.nav_account:
                         Intent intent = new Intent(AllPokemonsActivity.this, AccountSettingActivity.class);

@@ -13,7 +13,7 @@ import com.example.mypokemonapplication.R;
 import com.squareup.picasso.Picasso;
 
 public class PokemonViewHolder extends RecyclerView.ViewHolder {
-    private ImageView ivPokemon;
+    public ImageView ivPokemon;
     public TextView pokemonName;
 
     public PokemonViewHolder(@NonNull View itemView) {
